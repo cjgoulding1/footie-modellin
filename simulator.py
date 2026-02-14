@@ -78,24 +78,3 @@ def simulate_match_dixon_coles(home_team, away_team, params, rho=0.0):
     lam_away = params['attack'][away_team] * params['defense'][home_team]
 
     return sample_dixon_coles(lam_home, lam_away, rho)
-
-# ---------------- Example usage ------------------
-
-if __name__ == "__main__":
-    # simple team strength parameters
-    team_params = {
-        'attack': {'TeamA': 1.3, 'TeamB': 1.1},
-        'defense': {'TeamA': 0.9, 'TeamB': 1.0},
-        'home_adv': 1.15  # average home advantage
-    }
-
-    # simulate 10 matches
-    print("Poisson simulation (independent):")
-    for i in range(10):
-        h, a = simulate_match_poisson("TeamA", "TeamB", team_params)
-        print(f"Match {i+1}: TeamA {h} - {a} TeamB")
-
-    print("\nDixon-Coles simulation (with rho correction):")
-    for i in range(10):
-        h, a = simulate_match_dixon_coles("TeamA", "TeamB", team_params, rho=0.05)
-        print(f"Match {i+1}: TeamA {h} - {a} TeamB")
