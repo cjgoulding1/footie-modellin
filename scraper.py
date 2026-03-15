@@ -2,11 +2,42 @@ import requests
 from bs4 import BeautifulSoup
 import re
 from datetime import datetime
+import time
 
 headers = {
     "User-Agent": "Mozilla/5.0",
     "Accept-Language": "en-GB,en;q=0.9"
 }
+
+def get_match_ids(season):
+
+    match_ids = []
+
+    for matchday in range(1, 3):   # EPL has 38 matchdays
+
+        print(matchday)
+        url = f"https://www.transfermarkt.co.uk/premier-league/spieltag/wettbewerb/GB1/saison_id/{season}/spieltag/{matchday}"
+
+        r = requests.get(url, headers=headers)
+        soup = BeautifulSoup(r.text, "html.parser")
+
+        links = soup.select('a[href*="/spielbericht/index/spielbericht/"]')
+
+        for link in links:
+
+            href = link["href"]
+
+            match = re.search(r"spielbericht/(\d+)", href)
+
+            if match:
+                match_id = int(match.group(1))
+                match_ids.append(match_id)
+
+        time.sleep(2)
+
+    match_ids = list(set(match_ids))
+
+    return match_ids
 
 def scrape_match(match_id):
 
@@ -80,10 +111,8 @@ def scrape_match(match_id):
             method = "left_foot"
         elif "right-footed" in text:
             method = "right_foot"
-
-        situation = None
-        if "counter attack" in text:
-            situation = "counter_attack"
+        elif "counter attack" in text:
+            method = "counter_attack"
 
         event = {
             "team": team,
@@ -91,18 +120,18 @@ def scrape_match(match_id):
             "assist": assist,
             "score": score,
             "goal_method": method,
-            "goal_situation": situation
         }
 
         match_data["events"].append(event)
 
     return match_data
 
-match_ids = [
-    4625941,
-    4625942,
-    4625943
-]
+
+dataset = {}
+
+season = 2024
+
+match_ids = get_match_ids(season)
 
 dataset = {}
 
@@ -112,7 +141,10 @@ for match_id in match_ids:
         dataset[match_id] = scrape_match(match_id)
         print(f"Scraped {match_id}")
 
+        time.sleep(3)   # delay between match pages
+
     except Exception as e:
         print(f"Failed {match_id}: {e}")
+
 
 print(dataset)
