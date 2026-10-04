@@ -1,0 +1,29 @@
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Data stays local only - not pushed to remote.
+*.db
+*.db-journal
+scrape_log.txt
+/pl/
+/la liga/
+/ligue un/
+/serie a/
+/bunds/
+
+# Generated backtest outputs/logs - reproducible from the scripts, not checked in.
+first_goal_model/*_log.txt
+first_goal_model/*bets*.json
+first_goal_model/*diagnostic*.json
+
+# Superseded single-market experiments, kept locally but not part of the
+# streamlined pushed set (headers model, both penalty models, full-market
+# dynamic backtesters).
+first_goal_model/predict.py
+first_goal_model/backtest.py
+first_goal_model/backtest_flat_market.py
+first_goal_model/backtest_dynamic_market.py
+first_goal_model/backtest_kelly.py
+first_goal_model/__pycache__/

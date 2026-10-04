@@ -1,0 +1,71 @@
+{
+  "EPL": {
+    "coefficients": [
+      -2.8853342700075335,
+      0.13544523137502523,
+      -0.28298357120797835,
+      8.792821191159241
+    ],
+    "model": "full",
+    "league_rate": 0.11473684210526315,
+    "conversion_rate": 0.7647058823529411,
+    "n_observations": 2280,
+    "n_positive": 273,
+    "converged": true
+  },
+  "La_liga": {
+    "coefficients": [
+      -1.5214039322940627,
+      0.1862319477044341,
+      -0.357143313288839
+    ],
+    "model": "simple",
+    "league_rate": 0.14157894736842105,
+    "conversion_rate": 0.7554945054945055,
+    "n_observations": 2280,
+    "n_positive": 343,
+    "converged": true
+  },
+  "Serie_A": {
+    "coefficients": [
+      -2.3012862119422857,
+      0.3182549635344431,
+      -0.2251439092893817,
+      2.9649546931126802
+    ],
+    "model": "full",
+    "league_rate": 0.15578947368421053,
+    "conversion_rate": 0.7376623376623377,
+    "n_observations": 2280,
+    "n_positive": 364,
+    "converged": true
+  },
+  "Bundesliga": {
+    "coefficients": [
+      -1.509211965012952,
+      0.14401348317253984,
+      -0.31559045287112825,
+      -0.1747754661290571
+    ],
+    "model": "full",
+    "league_rate": 0.13660130718954247,
+    "conversion_rate": 0.7553191489361702,
+    "n_observations": 1836,
+    "n_positive": 268,
+    "converged": true
+  },
+  "Ligue_1": {
+    "coefficients": [
+      -2.616234181906891,
+      0.34817906991763053,
+      -0.26183960493074776,
+      5.229189087903083
+    ],
+    "model": "full",
+    "league_rate": 0.15157894736842106,
+    "conversion_rate": 0.7608142493638677,
+    "n_observations": 2280,
+    "n_positive": 368,
+    "converged": true
+  }
+}
